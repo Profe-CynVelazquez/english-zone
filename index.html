@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>English Zone – I.P.E.M. N° 317</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="scanline"></div>
+    <div class="hero-content">
+      <p class="eyebrow">I.P.E.M. N° 317 · San José de Calasanz · 1° Año</p>
+      <h1 class="logo">ENGLISH<span class="accent">ZONE</span></h1>
+      <p class="hero-sub">Lengua Extranjera – Inglés · Prof. Miranda Silvia · 2026</p>
+      <a href="#misiones" class="btn-start">▶ INICIAR MISIONES</a>
+    </div>
+    <div class="hero-grid"></div>
+  </header>
+
+  <!-- PROGRESO -->
+  <section class="progress-bar-section">
+    <div class="progress-wrapper">
+      <span class="progress-label">PROGRESO ANUAL</span>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <span class="progress-pct" id="progressPct">0%</span>
+    </div>
+  </section>
+
+  <!-- MISIONES -->
+  <main id="misiones" class="missions-grid">
+
+    <!-- MÓDULO 1 -->
+    <article class="mission-card" data-module="1">
+      <div class="card-header">
+        <span class="stage-tag">PRIMERA ETAPA</span>
+        <span class="module-num">MOD 01</span>
+      </div>
+      <h2 class="card-title">The Basics</h2>
+      <p class="card-desc">Colores · Objetos escolares · Números · Verbo To Be · Información personal · Alfabeto · Días · Meses · Estaciones</p>
+      <ul class="topic-list">
+        <li><span class="dot cyan"></span>Colores y objetos escolares</li>
+        <li><span class="dot cyan"></span>Números 1–100</li>
+        <li><span class="dot cyan"></span>Pronombre <em>It</em> · Verbo To Be</li>
+        <li><span class="dot cyan"></span>Información personal · Alfabeto</li>
+        <li><span class="dot cyan"></span>Días · Meses · Estaciones</li>
+      </ul>
+      <div class="card-footer">
+        <span class="status locked" id="status-1">🔒 PRÓXIMAMENTE</span>
+        <button class="btn-mission" onclick="openModule(1)">ENTRAR</button>
+      </div>
+    </article>
+
+    <!-- MÓDULO 2 -->
+    <article class="mission-card" data-module="2">
+      <div class="card-header">
+        <span class="stage-tag">PRIMERA ETAPA</span>
+        <span class="module-num">MOD 02</span>
+      </div>
+      <h2 class="card-title">All About Me</h2>
+      <p class="card-desc">Pronombres I/He/She · To Be · Países · Sustantivos · A/An · Adjetivos posesivos</p>
+      <ul class="topic-list">
+        <li><span class="dot magenta"></span>Pronombres: I, He, She</li>
+        <li><span class="dot magenta"></span>Verbo To Be (afirmativa)</li>
+        <li><span class="dot magenta"></span>Países y nacionalidades</li>
+        <li><span class="dot magenta"></span>Sustantivos comunes</li>
+        <li><span class="dot magenta"></span>A/An · My, Your, His, Her</li>
+      </ul>
+      <div class="card-footer">
+        <span class="status locked" id="status-2">🔒 PRÓXIMAMENTE</span>
+        <button class="btn-mission" onclick="openModule(2)">ENTRAR</button>
+      </div>
+    </article>
+
+    <!-- MÓDULO 3 -->
+    <article class="mission-card" data-module="3">
+      <div class="card-header">
+        <span class="stage-tag">SEGUNDA ETAPA</span>
+        <span class="module-num">MOD 03</span>
+      </div>
+      <h2 class="card-title">People & Places</h2>
+      <p class="card-desc">To Be completo · Trabajos · Adjetivos descriptivos · WH Questions</p>
+      <ul class="topic-list">
+        <li><span class="dot yellow"></span>Pronombres: You, We, They</li>
+        <li><span class="dot yellow"></span>To Be: todas las personas</li>
+        <li><span class="dot yellow"></span>Trabajos y ocupaciones</li>
+        <li><span class="dot yellow"></span>Adjetivos descriptivos</li>
+        <li><span class="dot yellow"></span>WH Questions: who · what · where · when</li>
+      </ul>
+      <div class="card-footer">
+        <span class="status locked" id="status-3">🔒 PRÓXIMAMENTE</span>
+        <button class="btn-mission" onclick="openModule(3)">ENTRAR</button>
+      </div>
+    </article>
+
+    <!-- MÓDULO 4 -->
+    <article class="mission-card" data-module="4">
+      <div class="card-header">
+        <span class="stage-tag">SEGUNDA ETAPA</span>
+        <span class="module-num">MOD 04</span>
+      </div>
+      <h2 class="card-title">My City & Home</h2>
+      <p class="card-desc">There is/are · Lugares · Preposiciones de lugar · Partes de la casa</p>
+      <ul class="topic-list">
+        <li><span class="dot green"></span>There is / There are</li>
+        <li><span class="dot green"></span>Lugares de la ciudad</li>
+        <li><span class="dot green"></span>Preposiciones: between, next to…</li>
+        <li><span class="dot green"></span>Partes de la casa · Muebles</li>
+        <li><span class="dot green"></span>Preposiciones: in, on, under</li>
+      </ul>
+      <div class="card-footer">
+        <span class="status locked" id="status-4">🔒 PRÓXIMAMENTE</span>
+        <button class="btn-mission" onclick="openModule(4)">ENTRAR</button>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>I.P.E.M. N° 317 "San José de Calasanz" · Lengua Extranjera Inglés · 2026</p>
+    <p class="footer-sub">Diseñado para aprender jugando 🎮</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
