@@ -13,113 +13,217 @@
   <header class="hero">
     <div class="scanline"></div>
     <div class="hero-content">
-      <p class="eyebrow">I.P.E.M. N° 317 · San José de Calasanz · 1° Año</p>
+      <p class="eyebrow">I.P.E.M. N° 317 · San José de Calasanz</p>
       <h1 class="logo">ENGLISH<span class="accent">ZONE</span></h1>
       <p class="hero-sub">Lengua Extranjera – Inglés · Prof. Cynthia Velazquez · 2026</p>
-      <a href="#misiones" class="btn-start">▶ INICIAR MISIONES</a>
+      <div class="hero-buttons">
+        <a href="#primer-anio" class="btn-year btn-year-1">▶ 1° AÑO</a>
+        <a href="#segundo-anio" class="btn-year btn-year-2">▶ 2° AÑO</a>
+      </div>
     </div>
     <div class="hero-grid"></div>
   </header>
 
-  <!-- PROGRESO -->
-  <section class="progress-bar-section">
-    <div class="progress-wrapper">
-      <span class="progress-label">PROGRESO ANUAL</span>
-      <div class="progress-track">
-        <div class="progress-fill" id="progressFill"></div>
+  <!-- ══════════════ SECCIÓN 1° AÑO ══════════════ -->
+  <section id="primer-anio" class="year-section">
+    <div class="year-header year-header-1">
+      <div class="year-header-inner">
+        <span class="year-badge">CICLO BÁSICO</span>
+        <h2 class="year-title"><span class="year-accent-1">1°</span> AÑO</h2>
+        <p class="year-sub">Lengua Extranjera Inglés · 4 Módulos</p>
       </div>
-      <span class="progress-pct" id="progressPct">0%</span>
     </div>
+
+    <!-- PROGRESO 1° AÑO -->
+    <div class="progress-bar-section">
+      <div class="progress-wrapper">
+        <span class="progress-label">PROGRESO ANUAL</span>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <span class="progress-pct" id="progressPct">0%</span>
+      </div>
+    </div>
+
+    <!-- MISIONES 1° AÑO -->
+    <main id="misiones" class="missions-grid">
+
+      <!-- MÓDULO 1 -->
+      <article class="mission-card" data-module="1">
+        <div class="card-header">
+          <span class="stage-tag">PRIMERA ETAPA</span>
+          <span class="module-num">MOD 01</span>
+        </div>
+        <h2 class="card-title">The Basics</h2>
+        <p class="card-desc">Colores · Objetos escolares · Números · Verbo To Be · Información personal · Alfabeto · Días · Meses · Estaciones</p>
+        <ul class="topic-list">
+          <li><span class="dot cyan"></span>Colores y objetos escolares</li>
+          <li><span class="dot cyan"></span>Números 1–100</li>
+          <li><span class="dot cyan"></span>Pronombre <em>It</em> · Verbo To Be</li>
+          <li><span class="dot cyan"></span>Información personal · Alfabeto</li>
+          <li><span class="dot cyan"></span>Días · Meses · Estaciones</li>
+        </ul>
+        <div class="card-footer">
+          <span class="status locked" id="status-1">🔒 PRÓXIMAMENTE</span>
+          <button class="btn-mission" onclick="openModule(1)">ENTRAR</button>
+        </div>
+      </article>
+
+      <!-- MÓDULO 2 -->
+      <article class="mission-card" data-module="2">
+        <div class="card-header">
+          <span class="stage-tag">PRIMERA ETAPA</span>
+          <span class="module-num">MOD 02</span>
+        </div>
+        <h2 class="card-title">All About Me</h2>
+        <p class="card-desc">Pronombres I/He/She · To Be · Países · Sustantivos · A/An · Adjetivos posesivos</p>
+        <ul class="topic-list">
+          <li><span class="dot magenta"></span>Pronombres: I, He, She</li>
+          <li><span class="dot magenta"></span>Verbo To Be (afirmativa)</li>
+          <li><span class="dot magenta"></span>Países y nacionalidades</li>
+          <li><span class="dot magenta"></span>Sustantivos comunes</li>
+          <li><span class="dot magenta"></span>A/An · My, Your, His, Her</li>
+        </ul>
+        <div class="card-footer">
+          <span class="status locked" id="status-2">🔒 PRÓXIMAMENTE</span>
+          <button class="btn-mission" onclick="openModule(2)">ENTRAR</button>
+        </div>
+      </article>
+
+      <!-- MÓDULO 3 -->
+      <article class="mission-card" data-module="3">
+        <div class="card-header">
+          <span class="stage-tag">SEGUNDA ETAPA</span>
+          <span class="module-num">MOD 03</span>
+        </div>
+        <h2 class="card-title">People & Places</h2>
+        <p class="card-desc">To Be completo · Trabajos · Adjetivos descriptivos · WH Questions</p>
+        <ul class="topic-list">
+          <li><span class="dot yellow"></span>Pronombres: You, We, They</li>
+          <li><span class="dot yellow"></span>To Be: todas las personas</li>
+          <li><span class="dot yellow"></span>Trabajos y ocupaciones</li>
+          <li><span class="dot yellow"></span>Adjetivos descriptivos</li>
+          <li><span class="dot yellow"></span>WH Questions: who · what · where · when</li>
+        </ul>
+        <div class="card-footer">
+          <span class="status locked" id="status-3">🔒 PRÓXIMAMENTE</span>
+          <button class="btn-mission" onclick="openModule(3)">ENTRAR</button>
+        </div>
+      </article>
+
+      <!-- MÓDULO 4 -->
+      <article class="mission-card" data-module="4">
+        <div class="card-header">
+          <span class="stage-tag">SEGUNDA ETAPA</span>
+          <span class="module-num">MOD 04</span>
+        </div>
+        <h2 class="card-title">My City & Home</h2>
+        <p class="card-desc">There is/are · Lugares · Preposiciones de lugar · Partes de la casa</p>
+        <ul class="topic-list">
+          <li><span class="dot green"></span>There is / There are</li>
+          <li><span class="dot green"></span>Lugares de la ciudad</li>
+          <li><span class="dot green"></span>Preposiciones: between, next to…</li>
+          <li><span class="dot green"></span>Partes de la casa · Muebles</li>
+          <li><span class="dot green"></span>Preposiciones: in, on, under</li>
+        </ul>
+        <div class="card-footer">
+          <span class="status locked" id="status-4">🔒 PRÓXIMAMENTE</span>
+          <button class="btn-mission" onclick="openModule(4)">ENTRAR</button>
+        </div>
+      </article>
+
+    </main>
   </section>
 
-  <!-- MISIONES -->
-  <main id="misiones" class="missions-grid">
+  <!-- ══════════════ SECCIÓN 2° AÑO ══════════════ -->
+  <section id="segundo-anio" class="year-section year-section-2">
+    <div class="year-header year-header-2">
+      <div class="year-header-inner">
+        <span class="year-badge">CICLO BÁSICO</span>
+        <h2 class="year-title"><span class="year-accent-2">2°</span> AÑO</h2>
+        <p class="year-sub">Lengua Extranjera Inglés · 3 Núcleos</p>
+      </div>
+    </div>
 
-    <!-- MÓDULO 1 -->
-    <article class="mission-card" data-module="1">
-      <div class="card-header">
-        <span class="stage-tag">PRIMERA ETAPA</span>
-        <span class="module-num">MOD 01</span>
+    <!-- PROGRESO 2° AÑO -->
+    <div class="progress-bar-section progress-bar-section-2">
+      <div class="progress-wrapper">
+        <span class="progress-label">PROGRESO ANUAL</span>
+        <div class="progress-track">
+          <div class="progress-fill progress-fill-2" id="progressFill2"></div>
+        </div>
+        <span class="progress-pct" id="progressPct2">0%</span>
       </div>
-      <h2 class="card-title">The Basics</h2>
-      <p class="card-desc">Colores · Objetos escolares · Números · Verbo To Be · Información personal · Alfabeto · Días · Meses · Estaciones</p>
-      <ul class="topic-list">
-        <li><span class="dot cyan"></span>Colores y objetos escolares</li>
-        <li><span class="dot cyan"></span>Números 1–100</li>
-        <li><span class="dot cyan"></span>Pronombre <em>It</em> · Verbo To Be</li>
-        <li><span class="dot cyan"></span>Información personal · Alfabeto</li>
-        <li><span class="dot cyan"></span>Días · Meses · Estaciones</li>
-      </ul>
-      <div class="card-footer">
-        <span class="status locked" id="status-1">🔒 PRÓXIMAMENTE</span>
-        <button class="btn-mission" onclick="openModule(1)">ENTRAR</button>
-      </div>
-    </article>
+    </div>
 
-    <!-- MÓDULO 2 -->
-    <article class="mission-card" data-module="2">
-      <div class="card-header">
-        <span class="stage-tag">PRIMERA ETAPA</span>
-        <span class="module-num">MOD 02</span>
-      </div>
-      <h2 class="card-title">All About Me</h2>
-      <p class="card-desc">Pronombres I/He/She · To Be · Países · Sustantivos · A/An · Adjetivos posesivos</p>
-      <ul class="topic-list">
-        <li><span class="dot magenta"></span>Pronombres: I, He, She</li>
-        <li><span class="dot magenta"></span>Verbo To Be (afirmativa)</li>
-        <li><span class="dot magenta"></span>Países y nacionalidades</li>
-        <li><span class="dot magenta"></span>Sustantivos comunes</li>
-        <li><span class="dot magenta"></span>A/An · My, Your, His, Her</li>
-      </ul>
-      <div class="card-footer">
-        <span class="status locked" id="status-2">🔒 PRÓXIMAMENTE</span>
-        <button class="btn-mission" onclick="openModule(2)">ENTRAR</button>
-      </div>
-    </article>
+    <!-- MISIONES 2° AÑO -->
+    <main id="misiones2" class="missions-grid">
 
-    <!-- MÓDULO 3 -->
-    <article class="mission-card" data-module="3">
-      <div class="card-header">
-        <span class="stage-tag">SEGUNDA ETAPA</span>
-        <span class="module-num">MOD 03</span>
-      </div>
-      <h2 class="card-title">People & Places</h2>
-      <p class="card-desc">To Be completo · Trabajos · Adjetivos descriptivos · WH Questions</p>
-      <ul class="topic-list">
-        <li><span class="dot yellow"></span>Pronombres: You, We, They</li>
-        <li><span class="dot yellow"></span>To Be: todas las personas</li>
-        <li><span class="dot yellow"></span>Trabajos y ocupaciones</li>
-        <li><span class="dot yellow"></span>Adjetivos descriptivos</li>
-        <li><span class="dot yellow"></span>WH Questions: who · what · where · when</li>
-      </ul>
-      <div class="card-footer">
-        <span class="status locked" id="status-3">🔒 PRÓXIMAMENTE</span>
-        <button class="btn-mission" onclick="openModule(3)">ENTRAR</button>
-      </div>
-    </article>
+      <!-- NÚCLEO 1 -->
+      <article class="mission-card mission-card-y2" data-module="y2-1">
+        <div class="card-header">
+          <span class="stage-tag">NÚCLEO 1</span>
+          <span class="module-num mod-y2-1">NÚC 01</span>
+        </div>
+        <h2 class="card-title">Who Am I?</h2>
+        <p class="card-desc">¿Cómo me presento? · ¿Cómo presento a los demás? · Familia · Datos personales</p>
+        <ul class="topic-list">
+          <li><span class="dot orange"></span>Verbo To Be (ser / estar / tener)</li>
+          <li><span class="dot orange"></span>Pronombres personales – caso sujeto</li>
+          <li><span class="dot orange"></span>Artículos: a / an</li>
+          <li><span class="dot orange"></span>Datos personales: nombre, edad, ocupación</li>
+          <li><span class="dot orange"></span>Miembros de la familia</li>
+        </ul>
+        <div class="card-footer">
+          <span class="status locked" id="status-y2-1">🔒 PRÓXIMAMENTE</span>
+          <button class="btn-mission btn-y2-1" onclick="openModule('y2-1')">ENTRAR</button>
+        </div>
+      </article>
 
-    <!-- MÓDULO 4 -->
-    <article class="mission-card" data-module="4">
-      <div class="card-header">
-        <span class="stage-tag">SEGUNDA ETAPA</span>
-        <span class="module-num">MOD 04</span>
-      </div>
-      <h2 class="card-title">My City & Home</h2>
-      <p class="card-desc">There is/are · Lugares · Preposiciones de lugar · Partes de la casa</p>
-      <ul class="topic-list">
-        <li><span class="dot green"></span>There is / There are</li>
-        <li><span class="dot green"></span>Lugares de la ciudad</li>
-        <li><span class="dot green"></span>Preposiciones: between, next to…</li>
-        <li><span class="dot green"></span>Partes de la casa · Muebles</li>
-        <li><span class="dot green"></span>Preposiciones: in, on, under</li>
-      </ul>
-      <div class="card-footer">
-        <span class="status locked" id="status-4">🔒 PRÓXIMAMENTE</span>
-        <button class="btn-mission" onclick="openModule(4)">ENTRAR</button>
-      </div>
-    </article>
+      <!-- NÚCLEO 2 -->
+      <article class="mission-card mission-card-y2" data-module="y2-2">
+        <div class="card-header">
+          <span class="stage-tag">NÚCLEO 2</span>
+          <span class="module-num mod-y2-2">NÚC 02</span>
+        </div>
+        <h2 class="card-title">My City</h2>
+        <p class="card-desc">Paseo por mi ciudad · Alimentos · Lugares · Edificios públicos</p>
+        <ul class="topic-list">
+          <li><span class="dot purple"></span>Verbo <em>can</em>: permiso y habilidad</li>
+          <li><span class="dot purple"></span>There is / There are</li>
+          <li><span class="dot purple"></span>Sustantivos contables e incontables</li>
+          <li><span class="dot purple"></span>Alimentos y comidas saludables (some / any)</li>
+          <li><span class="dot purple"></span>Lugares, negocios y edificios públicos</li>
+        </ul>
+        <div class="card-footer">
+          <span class="status locked" id="status-y2-2">🔒 PRÓXIMAMENTE</span>
+          <button class="btn-mission btn-y2-2" onclick="openModule('y2-2')">ENTRAR</button>
+        </div>
+      </article>
 
-  </main>
+      <!-- NÚCLEO 3 -->
+      <article class="mission-card mission-card-y2" data-module="y2-3">
+        <div class="card-header">
+          <span class="stage-tag">NÚCLEO 3</span>
+          <span class="module-num mod-y2-3">NÚC 03</span>
+        </div>
+        <h2 class="card-title">Routines & Wildlife</h2>
+        <p class="card-desc">Mi rutina · Hábitat y hábitos de animales salvajes · Simple Present</p>
+        <ul class="topic-list">
+          <li><span class="dot teal"></span>Simple Present: gustos y rutinas</li>
+          <li><span class="dot teal"></span>Oraciones afirmativas y negativas</li>
+          <li><span class="dot teal"></span>Actividades cotidianas</li>
+          <li><span class="dot teal"></span>Animales salvajes y mascotas</li>
+          <li><span class="dot teal"></span>Adverbios de frecuencia · Expresiones de tiempo</li>
+        </ul>
+        <div class="card-footer">
+          <span class="status locked" id="status-y2-3">🔒 PRÓXIMAMENTE</span>
+          <button class="btn-mission btn-y2-3" onclick="openModule('y2-3')">ENTRAR</button>
+        </div>
+      </article>
+
+    </main>
+  </section>
 
   <!-- MODAL -->
   <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">

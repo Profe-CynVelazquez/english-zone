@@ -410,3 +410,175 @@ body {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+/* ─── HERO BUTTONS (dos años) ──────────────────────── */
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-year {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: .8rem;
+  letter-spacing: .15em;
+  padding: .85rem 2.2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: transform .15s, box-shadow .15s;
+}
+
+.btn-year-1 {
+  color: var(--bg);
+  background: var(--cyan);
+  box-shadow: var(--glow-cyan);
+}
+.btn-year-1:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 32px rgba(0,245,255,.7);
+}
+
+.btn-year-2 {
+  color: var(--bg);
+  background: var(--magenta);
+  box-shadow: var(--glow-mag);
+}
+.btn-year-2:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 32px rgba(255,45,120,.7);
+}
+
+/* ─── YEAR SECTION ─────────────────────────────────── */
+.year-section {
+  background: var(--bg);
+}
+
+.year-section-2 {
+  background: #0a000f;
+}
+
+/* ─── YEAR HEADER ─────────────────────────────────── */
+.year-header {
+  padding: 3rem 1.5rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid #1e1e33;
+  position: relative;
+  overflow: hidden;
+}
+
+.year-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,245,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,245,255,.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+.year-header-2::before {
+  background-image:
+    linear-gradient(rgba(255,45,120,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,45,120,.04) 1px, transparent 1px);
+}
+
+.year-header-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.year-badge {
+  font-family: var(--font-display);
+  font-size: .55rem;
+  letter-spacing: .25em;
+  color: var(--muted);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: .6rem;
+}
+
+.year-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 8vw, 4.5rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: .5rem;
+}
+
+.year-accent-1 {
+  color: var(--cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+.year-accent-2 {
+  color: var(--magenta);
+  text-shadow: var(--glow-mag);
+}
+
+.year-sub {
+  font-size: .8rem;
+  color: var(--muted);
+  letter-spacing: .1em;
+}
+
+/* ─── PROGRESS 2° AÑO ─────────────────────────────── */
+.progress-bar-section-2 {
+  background: #0f000a;
+  border-color: #2e1122;
+}
+
+.progress-fill-2 {
+  background: linear-gradient(90deg, var(--magenta), #ff9900);
+  box-shadow: 0 0 10px var(--magenta);
+}
+
+#progressPct2 { color: var(--magenta); }
+
+/* ─── CARDS 2° AÑO ─────────────────────────────────── */
+:root {
+  --orange: #ff7b00;
+  --purple: #b44fff;
+  --teal:   #00ffb8;
+  --glow-orange: 0 0 18px rgba(255,123,0,.45);
+  --glow-purple: 0 0 18px rgba(180,79,255,.45);
+  --glow-teal:   0 0 18px rgba(0,255,184,.45);
+}
+
+.dot.orange { background: var(--orange); box-shadow: 0 0 6px var(--orange); }
+.dot.purple { background: var(--purple); box-shadow: 0 0 6px var(--purple); }
+.dot.teal   { background: var(--teal);   box-shadow: 0 0 6px var(--teal); }
+
+/* Colores de borde superior por módulo 2° año */
+.mission-card[data-module="y2-1"]::before { background: var(--orange); }
+.mission-card[data-module="y2-2"]::before { background: var(--purple); }
+.mission-card[data-module="y2-3"]::before { background: var(--teal); }
+
+/* Número de módulo */
+.mod-y2-1 { color: var(--orange) !important; }
+.mod-y2-2 { color: var(--purple) !important; }
+.mod-y2-3 { color: var(--teal) !important; }
+
+/* Botones de misión 2° año */
+.btn-y2-1 { color: var(--orange) !important; border-color: var(--orange) !important; }
+.btn-y2-1:hover { background: var(--orange) !important; color: var(--bg) !important; box-shadow: var(--glow-orange) !important; }
+
+.btn-y2-2 { color: var(--purple) !important; border-color: var(--purple) !important; }
+.btn-y2-2:hover { background: var(--purple) !important; color: var(--bg) !important; box-shadow: var(--glow-purple) !important; }
+
+.btn-y2-3 { color: var(--teal) !important; border-color: var(--teal) !important; }
+.btn-y2-3:hover { background: var(--teal) !important; color: var(--bg) !important; box-shadow: var(--glow-teal) !important; }
+
+/* Divisor entre secciones */
+.year-section + .year-section {
+  border-top: 2px solid #1e1e33;
+}
+
+@media (max-width: 480px) {
+  .hero-buttons { flex-direction: column; align-items: center; }
+  .btn-year { width: 220px; text-align: center; }
+  .year-header { padding: 2rem 1rem 1.5rem; }
+}

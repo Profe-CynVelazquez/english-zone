@@ -768,3 +768,222 @@ const listen4Data = [
   { word:'is there a supermarket',question:'¿Qué pregunta escuchaste?', opts:['Hay un supermercado','¿Hay un supermercado?','No hay supermercado','¿Dónde está el super?'], ans:1 },
   { word:'between the bank and the hospital', question:'¿Qué escuchaste?', opts:['Al lado del banco','Detrás del hospital','Entre el banco y el hospital','Frente al hospital'], ans:2 },
 ];
+// ═══════════════════════════════════════════════════════
+//  2° AÑO – MÓDULOS
+// ═══════════════════════════════════════════════════════
+
+// Registrar módulos de 2° año en openModule
+const _origOpenModule = openModule;
+openModule = function(num) {
+  if (typeof num === 'string' && num.startsWith('y2-')) {
+    const n = parseInt(num.split('-')[1]);
+    const builders2 = { 1: buildModuleY2_1, 2: buildModuleY2_2, 3: buildModuleY2_3 };
+    const content = document.getElementById('modalContent');
+    content.innerHTML = builders2[n]();
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  } else {
+    _origOpenModule(num);
+  }
+};
+
+// Progreso 2° año
+function getProgress2() { return parseInt(localStorage.getItem('ez_progress2') || '0'); }
+function setProgress2(val) { localStorage.setItem('ez_progress2', val); updateProgressBar2(val); }
+function updateProgressBar2(val) {
+  const fill = document.getElementById('progressFill2');
+  const pct  = document.getElementById('progressPct2');
+  if (fill) fill.style.width = val + '%';
+  if (pct)  pct.textContent  = val + '%';
+}
+function bumpProgress2(amount) {
+  if (getProgress2() < amount) setProgress2(amount);
+}
+
+// ─── NÚCLEO Y2-1: Who Am I? ─────────────────────────
+const quizY21Data = [
+  { q:'¿Cuál es la forma correcta?', opts:['I are a student','I am a student','I is a student','Me am student'], ans:1 },
+  { q:'¿Cómo se dice "Ella tiene 15 años"?', opts:['She have 15 years','She is 15 years old','She are 15','Her is 15'], ans:1 },
+  { q:'¿Qué artículo va antes de "apple"?', opts:['a','an','the','—'], ans:1 },
+  { q:'¿Cómo se dice "hermano" en inglés?', opts:['sister','cousin','brother','uncle'], ans:2 },
+  { q:'My name ___ Laura.', opts:['am','are','is','be'], ans:2 },
+];
+const matchY21Data = [
+  {en:'father',es:'padre'},{en:'mother',es:'madre'},{en:'brother',es:'hermano'},
+  {en:'sister',es:'hermana'},{en:'grandmother',es:'abuela'},{en:'cousin',es:'primo/a'},
+];
+const fillY21Data = [
+  { sentence:'___ name is Carlos. ___ is 14 years old.', answers:['His','He'], blanks:2 },
+  { sentence:'___ are from Argentina. Our nationality is Argentine.', answers:['We'], blanks:1 },
+  { sentence:'She is ___ teacher. ___ name is Miss Velazquez.', answers:['a','Her'], blanks:2 },
+];
+const listenY21Data = [
+  { word:'I am a student', question:'¿Qué oración escuchaste?', opts:['Él es estudiante','Yo soy estudiante','Ella es maestra','Vos sos amigo'], ans:1 },
+  { word:'my sister', question:'¿Qué escuchaste?', opts:['mi hermano','mi prima','mi hermana','mi madre'], ans:2 },
+  { word:'He is fifteen years old', question:'¿Qué oración escuchaste?', opts:['Ella tiene 15 años','Él tiene 50 años','Él tiene 15 años','Yo tengo 15 años'], ans:2 },
+  { word:'an engineer', question:'¿Qué ocupación escuchaste?', opts:['un doctor','un maestro','un ingeniero','un abogado'], ans:2 },
+  { word:'What is your name', question:'¿Qué pregunta escuchaste?', opts:['¿Cómo estás?','¿Cuántos años tenés?','¿Cómo te llamás?','¿De dónde sos?'], ans:2 },
+];
+
+function buildModuleY2_1() {
+  window.quizY21Data = quizY21Data;
+  return sharedCSS + `<style>:root{--mc:var(--orange)}</style>
+  <h2 style="color:var(--orange)">NÚC 01 · Who Am I?</h2>
+  <p>Presentaciones · Familia · Datos personales · Verbo To Be</p>
+  ${tabsHTML(['QUIZ','MATCH','COMPLETAR','🔊 LISTENING'],'var(--orange)')}
+  <div id="act1" class="act-panel">
+    <p class="act-title">Elegí la opción correcta</p>
+    ${quizBlock(quizY21Data,'quizY21')}
+    <button class="act-submit" onclick="checkQuizGeneric('quizY21',${quizY21Data.length},33)">CORREGIR</button>
+    <div id="quizY21-result" class="result-box" style="display:none"></div>
+  </div>
+  <div id="act2" class="act-panel" style="display:none">
+    <p class="act-title">Uní cada palabra con su traducción</p>
+    ${matchGrid(matchY21Data,'mY21')}
+    <div id="mY21-match-result" class="result-box" style="display:none"></div>
+  </div>
+  <div id="act3" class="act-panel" style="display:none">
+    <p class="act-title">Completá los espacios con las palabras del recuadro</p>
+    <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem">
+      ${['His','He','We','a','Her'].map(w=>`<span style="padding:.25rem .6rem;background:#0a0a0f;border:1px solid var(--orange);border-radius:20px;font-size:.78rem;color:var(--orange)">${w}</span>`).join('')}
+    </div>
+    ${fillY21Data.map((item,i)=>`
+      <div class="fill-item" id="fy21-${i}">
+        ${item.sentence.split('___').map((part,pi,arr)=>
+          pi<arr.length-1
+            ? `${part}<input class="fill-input" id="fy21-inp-${i}-${pi}" placeholder="___" />`
+            : part
+        ).join('')}
+      </div>`).join('')}
+    <button class="act-submit" onclick="checkFillY21()">CORREGIR</button>
+    <div id="fy21-result" class="result-box" style="display:none"></div>
+  </div>
+  <div id="act4" class="act-panel" style="display:none">
+    <p class="act-title">🎧 Escuchá y elegí la respuesta correcta</p>
+    ${listeningBlock(listenY21Data,'lY21')}
+    <button class="act-submit" onclick="checkListening(listenY21Data,'lY21',66)">VER RESULTADOS</button>
+    <div id="lY21-listen-result" class="result-box" style="display:none"></div>
+  </div>`;
+}
+
+function checkFillY21() {
+  let ok=0, total=0;
+  fillY21Data.forEach((item,i)=>{
+    item.answers.forEach((ans,pi)=>{
+      const inp=document.getElementById(`fy21-inp-${i}-${pi}`);
+      if(!inp) return;
+      total++;
+      if(inp.value.trim().toLowerCase()===ans.toLowerCase()){inp.classList.add('ok');ok++;}
+      else inp.classList.add('err');
+    });
+  });
+  showResult('fy21-result',ok,total,Math.round(ok/total*100),33);
+}
+
+// ─── NÚCLEO Y2-2: My City ───────────────────────────
+const quizY22Data = [
+  { q:'¿Cuál es la forma correcta?', opts:['There is many parks','There are a park','There are many parks','There is many park'], ans:2 },
+  { q:'"Can you help me?" significa:', opts:['¿Podés ayudarme?','¿Querés ayudarme?','¿Debés ayudarme?','¿Podría ayudarte?'], ans:0 },
+  { q:'¿Cuál es incontable?', opts:['apple','water','book','chair'], ans:1 },
+  { q:'"___ milk in the fridge." (hay algo)', opts:['There are some','There is some','There is any','There are any'], ans:1 },
+  { q:'¿Cómo se dice "biblioteca"?', opts:['hospital','library','bakery','park'], ans:1 },
+];
+const matchY22Data = [
+  {en:'supermarket',es:'supermercado'},{en:'bakery',es:'panadería'},
+  {en:'hospital',es:'hospital'},{en:'library',es:'biblioteca'},
+  {en:'school',es:'escuela'},{en:'pharmacy',es:'farmacia'},
+];
+const listenY22Data = [
+  { word:'There is a bank near the school', question:'¿Qué escuchaste?', opts:['Hay un banco cerca de la escuela','Hay una escuela cerca del banco','No hay banco','Hay un parque cerca'], ans:0 },
+  { word:'Can I use your pen please', question:'¿Qué pediste?', opts:['Prestame tu libro','¿Puedo usar tu lapicera?','¿Tenés una pluma?','Dame tu lápiz'], ans:1 },
+  { word:'There are some apples', question:'¿Qué hay?', opts:['Algunas naranjas','Ninguna manzana','Algunas manzanas','Una manzana'], ans:2 },
+  { word:'Is there a library here', question:'¿Qué preguntaste?', opts:['¿Hay una farmacia?','¿Hay una biblioteca?','¿Dónde está la biblioteca?','¿Cuántas bibliotecas hay?'], ans:1 },
+  { word:'healthy food', question:'¿Qué escuchaste?', opts:['comida rápida','comida saludable','mucha comida','poca comida'], ans:1 },
+];
+
+function buildModuleY2_2() {
+  return sharedCSS + `<style>:root{--mc:var(--purple)}</style>
+  <h2 style="color:var(--purple)">NÚC 02 · My City</h2>
+  <p>Can · There is/are · Sustantivos contables e incontables · Lugares</p>
+  ${tabsHTML(['QUIZ','MATCH','🔊 LISTENING'],'var(--purple)')}
+  <div id="act1" class="act-panel">
+    <p class="act-title">Elegí la opción correcta</p>
+    ${quizBlock(quizY22Data,'quizY22')}
+    <button class="act-submit" onclick="checkQuizGeneric('quizY22',${quizY22Data.length},66)">CORREGIR</button>
+    <div id="quizY22-result" class="result-box" style="display:none"></div>
+  </div>
+  <div id="act2" class="act-panel" style="display:none">
+    <p class="act-title">Uní cada lugar con su traducción</p>
+    ${matchGrid(matchY22Data,'mY22')}
+    <div id="mY22-match-result" class="result-box" style="display:none"></div>
+  </div>
+  <div id="act3" class="act-panel" style="display:none">
+    <p class="act-title">🎧 Escuchá y elegí la respuesta correcta</p>
+    ${listeningBlock(listenY22Data,'lY22')}
+    <button class="act-submit" onclick="checkListening(listenY22Data,'lY22',100)">VER RESULTADOS</button>
+    <div id="lY22-listen-result" class="result-box" style="display:none"></div>
+  </div>`;
+}
+window.quizY22Data = quizY22Data;
+
+// ─── NÚCLEO Y2-3: Routines & Wildlife ───────────────
+const quizY23Data = [
+  { q:'She ___ to school every day.', opts:['go','goes','is go','going'], ans:1 },
+  { q:'"He doesn\'t eat meat." Es una oración:', opts:['afirmativa','interrogativa','negativa','exclamativa'], ans:2 },
+  { q:'¿Qué adverbio indica acción casi siempre?', opts:['never','sometimes','usually','always'], ans:3 },
+  { q:'"Lions ___ in Africa." (vivir)', opts:['live','lives','is living','lived'], ans:0 },
+  { q:'"Do you like pizza?" La respuesta negativa es:', opts:["Yes, I do","No, I don't","No, I doesn't","Yes, he does"], ans:1 },
+];
+const matchY23Data = [
+  {en:'lion',es:'león'},{en:'elephant',es:'elefante'},{en:'eagle',es:'águila'},
+  {en:'dolphin',es:'delfín'},{en:'snake',es:'serpiente'},{en:'butterfly',es:'mariposa'},
+];
+const orderY23Data = [
+  { words:['gets','She','up','early','always'], correct:'She always gets up early' },
+  { words:['eat','Lions','meat','only'], correct:'Lions eat only meat' },
+  { words:['he','Does','English','study','?'], correct:'Does he study English ?' },
+  { words:['never','I','junk','eat','food'], correct:'I never eat junk food' },
+];
+const listenY23Data = [
+  { word:'I usually wake up at seven', question:'¿Qué hace la persona?', opts:['Se duerme a las 7','Se despierta a las 7','Come a las 7','Sale a las 7'], ans:1 },
+  { word:'She never eats fast food', question:'¿Qué oración escuchaste?', opts:['Ella siempre come comida rápida','Ella nunca come comida rápida','Ella a veces come comida rápida','Ella come comida rápida'], ans:1 },
+  { word:'Elephants live in Africa and Asia', question:'¿Dónde viven los elefantes?', opts:['Solo en África','Solo en Asia','En África y Asia','En América'], ans:2 },
+  { word:'Do you have a pet', question:'¿Qué pregunta escuchaste?', opts:['¿Tenés una mascota?','¿Querés una mascota?','¿Cómo se llama tu mascota?','¿Dónde está tu mascota?'], ans:0 },
+  { word:'always', question:'¿Qué adverbio escuchaste?', opts:['nunca','a veces','siempre','generalmente'], ans:2 },
+];
+
+function buildModuleY2_3() {
+  window.quizY23Data = quizY23Data;
+  return sharedCSS + `<style>:root{--mc:var(--teal)}</style>
+  <h2 style="color:var(--teal)">NÚC 03 · Routines & Wildlife</h2>
+  <p>Simple Present · Rutinas · Animales · Adverbios de frecuencia</p>
+  ${tabsHTML(['QUIZ','MATCH','ORDENAR','🔊 LISTENING'],'var(--teal)')}
+  <div id="act1" class="act-panel">
+    <p class="act-title">Elegí la opción correcta</p>
+    ${quizBlock(quizY23Data,'quizY23')}
+    <button class="act-submit" onclick="checkQuizGeneric('quizY23',${quizY23Data.length},66)">CORREGIR</button>
+    <div id="quizY23-result" class="result-box" style="display:none"></div>
+  </div>
+  <div id="act2" class="act-panel" style="display:none">
+    <p class="act-title">Uní cada animal con su traducción</p>
+    ${matchGrid(matchY23Data,'mY23')}
+    <div id="mY23-match-result" class="result-box" style="display:none"></div>
+  </div>
+  <div id="act3" class="act-panel" style="display:none">
+    <p class="act-title">Ordená las palabras para formar oraciones correctas</p>
+    ${orderBlock(orderY23Data,'oY23')}
+    <button class="act-submit" onclick="checkOrder(orderY23Data,'oY23',100)">CORREGIR</button>
+    <div id="oY23-order-result" class="result-box" style="display:none"></div>
+  </div>
+  <div id="act4" class="act-panel" style="display:none">
+    <p class="act-title">🎧 Escuchá y elegí la respuesta correcta</p>
+    ${listeningBlock(listenY23Data,'lY23')}
+    <button class="act-submit" onclick="checkListening(listenY23Data,'lY23',100)">VER RESULTADOS</button>
+    <div id="lY23-listen-result" class="result-box" style="display:none"></div>
+  </div>`;
+}
+
+// Iniciar barra de 2° año al cargar
+document.addEventListener('DOMContentLoaded', () => {
+  updateProgressBar2(getProgress2());
+});
